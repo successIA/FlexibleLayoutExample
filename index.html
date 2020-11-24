@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            height: 100%;
+        }
+
+        .sidebar {
+            background: lightgray;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 15rem;
+            height: 100vh;
+            margin-left: -15rem;
+            overflow-x: auto;
+            overflow-y: auto;
+            z-index: 1;
+        }
+
+        .sidebar-visible {
+            margin-left: 0;
+        }
+
+        .sidebar--transition {
+            transition: margin 0.25s ease;
+        }
+
+        .sidebar__header {
+            display: flex;
+            justify-content: space-between;
+            position: sticky;
+            left: 0;
+            top: 0;
+            align-items: center;
+            background: rgb(78, 73, 73);
+        }
+
+        .sidebar__title {
+            margin-left: 1rem;
+            font-size: .9rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .sidebar__close {
+            position: relative;
+            width: 3rem;
+            height: 3rem;
+            background: transparent;
+            border: 0px none transparent;
+        }
+
+        .sidebar__close-item1,
+        .sidebar__close-item2 {
+            width: 50%;
+            height: 10%;
+            border-radius: 2px;
+            background: lightgray;
+            position: absolute;
+            left: 25%;
+            top: 45%;
+        }
+
+        .sidebar__close-item1 {
+            transform: rotate(135deg);
+        }
+
+        .sidebar__close-item2 {
+            transform: rotate(-135deg);
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            min-height: 100%;
+            min-width: 0;
+            background: rgb(237, 239, 241);
+        }
+
+        .navigation {
+            background-image: linear-gradient(351deg, #020024 0%, rgba(114, 39, 177, 0.994026) 0%, rgba(118, 7, 124, 0.949208) 100%);
+            padding: 0.5rem 1rem;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            min-height: 3rem;
+        }
+
+        .footer {
+            background-color: cyan;
+            margin-top: auto;
+        }
+
+        .overlay {
+            display: none;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background: rgba(59, 59, 59, 0.397);
+        }
+
+        .overlay--visible {
+            display: block;
+        }
+
+        .nav-toggler {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 55px;
+            height: 40px;
+            border: 1px solid rgba(233, 232, 232, 0.3);
+            border-radius: 3px;
+            background: transparent;
+            padding: 0;
+        }
+
+        .nav-toggler:hover {
+            cursor: pointer;
+        }
+
+        .nav-toggler__item {
+            width: 45%;
+            height: 2px;
+            background: rgba(233, 232, 232, 0.603);
+            margin-bottom: 6px;
+            border-radius: 3px;
+        }
+
+        .nav-toggler__item:last-of-type {
+            margin-bottom: 0;
+        }
+
+        @media (min-width: 992px) {
+            .sidebar {
+                margin-left: 0;
+                transition: margin 0s ease;
+            }
+
+            .sidebar__close {
+                visibility: hidden;
+            }
+
+            .overlay--visible {
+                display: none;
+            }
+
+            .container {
+                margin-left: 15rem;
+            }
+
+            .nav-toggler {
+                display: none;
+            }
+        }
+    </style>
+    <title>Flex Navigation</title>
+</head>
+
+<body>
+    <div class="overlay"></div>
+
+    <div class="sidebar">
+        <div class="sidebar__header">
+            <div class="sidebar__title">
+                Hey
+            </div>
+            <button class="sidebar__close">
+                <div class="sidebar__close-item1"></div>
+                <div class="sidebar__close-item2"></div>
+            </button>
+        </div>
+        <div style="width: 20rem; background: yellow;">ewew</div>
+        <div>
+            <h1>sidebar 1</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+            <h1>sidebar</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="navigation">
+            <button class="nav-toggler">
+                <div class="nav-toggler__item"></div>
+                <div class="nav-toggler__item"></div>
+                <div class="nav-toggler__item"></div>
+            </button>
+        </div>
+        <div class="main">
+            <p>
+                By spreading it out over 3-weeks, it gives you a clear goal to walk away with at the end of each
+                week. We aren't
+                cramming things in. We aren't being overwhelmed by all the possibilities at once.
+
+                It's paced in a way that even if you live a busy schedule, you can find time to get through it
+                and be confident in what
+                you learned. So stop fighting, stop struggling, and stop letting responsiveness get you down.
+            </p>
+            <p>
+                By spreading it out over 3-weeks, it gives you a clear goal to walk away with at the end of each
+                week. We aren't
+                cramming things in. We aren't being overwhelmed by all the possibilities at once.
+
+                It's paced in a way that even if you live a busy schedule, you can find time to get through it
+                and be confident in
+                what
+                you learned. So stop fighting, stop struggling, and stop letting responsiveness get you down.
+            </p>
+            <p>
+                By spreading it out over 3-weeks, it gives you a clear goal to walk away with at the end of each
+                week. We aren't
+                cramming things in. We aren't being overwhelmed by all the possibilities at once.
+
+                It's paced in a way that even if you live a busy schedule, you can find time to get through it
+                and be confident in
+                what
+                you learned. So stop fighting, stop struggling, and stop letting responsiveness get you down.
+            </p>
+            <p>
+                By spreading it out over 3-weeks, it gives you a clear goal to walk away with at the end of each
+                week. We aren't
+                cramming things in. We aren't being overwhelmed by all the possibilities at once.
+
+                It's paced in a way that even if you live a busy schedule, you can find time to get through it
+                and be confident in
+                what
+                you learned. So stop fighting, stop struggling, and stop letting responsiveness get you down.
+            </p>
+            <p>
+                By spreading it out over 3-weeks, it gives you a clear goal to walk away with at the end of each
+                week. We aren't
+                cramming things in. We aren't being overwhelmed by all the possibilities at once.
+
+                It's paced in a way that even if you live a busy schedule, you can find time to get through it
+                and be confident in
+                what
+                you learned. So stop fighting, stop struggling, and stop letting responsiveness get you down.
+            </p>
+            <p>
+                By spreading it out over 3-weeks, it gives you a clear goal to walk away with at the end of each
+                week. We aren't
+                cramming things in. We aren't being overwhelmed by all the possibilities at once.
+
+                It's paced in a way that even if you live a busy schedule, you can find time to get through it
+                and be confident in
+                what
+                you learned. So stop fighting, stop struggling, and stop letting responsiveness get you down.
+            </p>
+            <p>
+                By spreading it out over 3-weeks, it gives you a clear goal to walk away with at the end of each
+                week. We aren't
+                cramming things in. We aren't being overwhelmed by all the possibilities at once.
+
+                It's paced in a way that even if you live a busy schedule, you can find time to get through it
+                and be confident in
+                what
+                you learned. So stop fighting, stop struggling, and stop letting responsiveness get you down.
+            </p>
+        </div>
+
+        <div class="footer">Footer</div>
+    </div>
+
+    <script>
+        const navToggler = document.getElementsByClassName('nav-toggler')[0];
+        const overlay = document.getElementsByClassName('overlay')[0]
+        const sidebar = document.getElementsByClassName('sidebar')[0];
+        const sidebarClose = document.getElementsByClassName('sidebar__close')[0];
+
+        navToggler.addEventListener('click', function () {
+            sidebar.classList.add('sidebar-visible');
+            sidebar.classList.add('sidebar--transition');
+            showOverlay()
+        })
+
+        addMultipleEventListener(overlay, ['click', 'touchstart'], function (e) {
+            if (!sidebar.contains(e.target)) {
+                closeSidebar()
+            }
+        })
+
+        sidebarClose.addEventListener('click', function () {
+            closeSidebar()
+        });
+
+        window.onresize = function (e) {
+            sidebar.classList.remove('sidebar--transition');
+            if (
+                e.target.innerWidth < 992 &&
+                sidebar.classList.contains('sidebar-visible')
+            ) {
+                showOverlay();
+            }
+        }
+
+        function addMultipleEventListener(element, events, handler) {
+            events.forEach(e => element.addEventListener(e, handler))
+        }
+
+        function closeSidebar() {
+            sidebar.classList.remove('sidebar-visible');
+            hideOverlay()
+        }
+
+        function showOverlay() {
+            overlay.classList.add('overlay--visible')
+        }
+
+        function hideOverlay() {
+            overlay.classList.remove('overlay--visible')
+        }
+    </script>
+</body>
+
+</html>

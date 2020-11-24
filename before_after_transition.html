@@ -1,0 +1,181 @@
+<!--
+	Before and After
+	When a before, after and reference element have a hover selector defined 
+	separately the properties defined in each of the selector will be executed when
+	when any of the element is hovered over.
+
+	Using block element to create a before and after element causes the before element to
+	sit on the block element while the after moves to the bottom.
+	||--||
+	|-|
+
+	Translation
+	When a translation is registered on an element twice. The second transition (in hover)
+	starts from initial position of the element rather than the postion where the
+	first one ends.
+
+	https://css-tricks.com/almanac/selectors/a/after-and-before/
+	https://w3bits.com/animated-menu-icon-css/
+	https://codepen.io/kevinpowell/pen/zYvEKJx
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Value: min-content</title>
+  <meta charset="UTF-8"/>
+  <style>
+  	.nav-toggle {
+	  cursor: pointer;
+	  border: 0;
+	  width: 3rem;
+	  height: 3rem;
+	  padding: 0em;
+	  border-radius: 50%;
+	  background: #072a2d;
+	  color: white;
+	  transition: opacity 250ms ease;
+	  position: absolute;
+	  left: 0;
+	}
+
+	.nav-toggle:focus,
+	.nav-toggle:hover {
+	  opacity: 0.75;
+	}
+
+	.hamburger {
+	  width: 50%;
+	  position: relative;
+	}
+
+	.hamburger {
+	  display: block;
+	  margin: 0 auto;
+	  height: 3px;
+	  background: white;
+	}
+
+	.hamburger::before {
+	  content: "";
+	  background: red;
+	  display: block;
+	  margin: 0 auto;
+	  height: 3px;
+	}
+
+	.hamburger::after {
+	  content: "";
+	  background: blue;
+	  display: block;
+	  margin: 0 auto;
+	  height: 3px;
+	}
+
+	.hamburger::before {
+	  transform: translateY(-6px);
+	}
+
+	.hamburger::after {
+	  transform: translateY(3px);
+	}
+
+	.hamburger:hover:before {
+		transform: translateY(0px) rotate(135deg);
+	}
+
+	.hamburger:hover:after {
+		transform: translateY(-3px) rotate(-135deg);
+	}
+
+	.hamburger:hover {
+		transform: scale(0);
+	}
+
+	.nav-icon {
+	  margin: 1em;
+	  width: 40px;
+	}
+	
+	.nav-icon div {
+	  background-color: #f00;
+	  border-radius: 3px;
+	  content: '';
+	  display: block;
+	  height: 5px;
+	  margin: 7px 0;
+	  transition: all .2s ease-in-out;
+	}
+
+	.nav-icon:before {
+	  background-color: #00f;
+	  border-radius: 3px;
+	  content: '';
+	  display: block;
+	  height: 5px;
+	  margin: 7px 0;
+	  transition: all .2s ease-in-out;
+	}
+
+	.nav-icon:after {
+	  background-color: #0f0;
+	  border-radius: 3px;
+	  content: '';
+	  display: block;
+	  height: 5px;
+	  margin: 7px 0;
+	  transition: all .2s ease-in-out;
+	}
+
+	.nav-icon:hover:before {
+	  transform: translateY(12px) rotate(135deg);
+	}
+
+	.nav-icon:hover:after {
+	  transform: translateY(-12px) rotate(-135deg);
+	}
+
+	.nav-icon:hover div {
+	  transform: scale(0);
+	}
+
+	.wrapper:hover {
+		background-color: blue;
+	}
+	.wrapper button:before{
+		content: "Before";
+		display: block;
+		background-color: green;
+		width: 2rem;
+		border: 1px solid black;
+	}
+	.wrapper button:hover:before{
+		background-color: red;
+	}
+	.wrapper button:hover {
+		background-color: yellow;
+	}
+
+	.move-btn {
+		transform: translateX(2px);
+	}
+	.move-btn:hover {
+		transform: translateX(4px);	
+	}
+  </style>
+</head>
+<body>
+	<button class="nav-toggle" aria-label="open navigation">
+      <span class="hamburger"></span>
+    </button>
+	
+	<div class="nav-icon">
+	  <div></div>
+	</div>
+	
+	<div class="wrapper">
+		<button>Hover me</button>
+	</div>
+
+	<button class="move-btn">Hi</button>
+</body>
+</html>
